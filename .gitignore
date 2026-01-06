@@ -1,0 +1,14 @@
+# virtual environment
+myvenv/
+
+# environment variables
+.env
+
+# jupyter checkpoints
+.ipynb_checkpoints/
+
+# python cache
+__pycache__/
+
+complete streamlit notes.pdf
+chatbot .ipynb
