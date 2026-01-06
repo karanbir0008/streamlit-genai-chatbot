@@ -16,6 +16,13 @@ st.set_page_config(
 # main title of page
 st.title("Karan's chatbot")
 
+# to add a selectbox for different models of llm
+selected_model = st.sidebar.selectbox(
+    "choose model",
+    ["llama-3.1-8b-instant","llama-3.3-70b-versatile","meta-llama/llama-guard-4-12b"
+     ,"openai/gpt-oss-120b","openai/gpt-oss-20b"]
+)
+
 # initialize the chat history ---- > session state = {chat_history = [{},{}]}
 if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = [{"role":"system","content":"your name is heisenburg .you are an expert AI assistant and science teacher. you have vast knowledge of science in every ascpect. always give answer as if teaching to a student of 3rd grade. do not forget to add daily life examples to understand better."}]
@@ -37,7 +44,7 @@ if user_prompt:
     #initializing llm remote control---> this code is placed here as if user do not enter any prompt then initialization of llm is useless
     if "llm" not in st.session_state:
         st.session_state["llm"] = ChatGroq(
-            model="llama-3.3-70b-versatile",
+            model=f"{selected_model}",
             temperature=0.3
         )
 
